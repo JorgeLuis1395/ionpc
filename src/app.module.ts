@@ -300,11 +300,11 @@ const ENTIDADES = [
         TypeOrmModule.forRootAsync({
             useFactory: () => ({
                 type: 'postgres',
-                host: process.env.DB_HOST || 'localhost',
+                host: process.env.DB_HOST || '34.27.250.78',
                 port: +process.env.DB_PORT || 5432,
-                username: process.env.DB_USER || 'postgres',
-                password: process.env.DB_PASS || 'Admin123.',
-                database: process.env.DB_DATABASE || 'crm_emseguridad',
+                username: process.env.DB_USER || 'bd-strapi',
+                password: process.env.DB_PASS || 'ixoH#|uKcNJfh-HD',
+                database: process.env.DB_DATABASE || 'ionpc',
                 entities: ENTIDADES,
                 synchronize: true,
             }),
@@ -320,7 +320,7 @@ const ENTIDADES = [
         }),
         MongooseModule.forRootAsync({
             useFactory: () => ({
-                uri: process.env.URI_MONGODB || 'mongodb://localhost/IncidenteData',
+                uri: process.env.URI_MONGODB || 'mongodb+srv://bulbasorcarrillo:gdWBZeHdWirwtUEN@cluster0.auwxkms.mongodb.net/?retryWrites=true&w=majority',
             }),
         }),
 
