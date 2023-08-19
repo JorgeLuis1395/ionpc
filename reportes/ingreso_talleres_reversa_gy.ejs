@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reporte CRM</title>
+    <% include general.ejs %>
+
+    <style>
+        .border-report {
+            border: 2px solid;
+        }
+
+        .rotate {
+            /* FF3.5+ */
+            -moz-transform: rotate(-90.0deg);
+            /* Opera 10.5 */
+            -o-transform: rotate(-90.0deg);
+            /* Saf3.1+, Chrome */
+            -webkit-transform: rotate(-90.0deg);
+            /* IE6,IE7 */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* Standard */
+            transform: rotate(-90.0deg);
+        }
+    </style>
+</head>
+<body>
+<div><span style='color: lightpink; font-size: 30px'>REVERSO SOLO VA IMPRESA LA HOJA ROSADA</span>
+</div>
+<div>
+
+    <table style="width:100%; border: hidden; margin-top: 5%">
+        <tr>
+            <td colspan="12"><img src="<%= logo; %>" style="width: 100%; border: hidden" alt="logo">
+            </td>
+
+        </tr>
+        <tr>
+            <td style=" border: hidden;">Orden de Trabajo</td>
+            <td style="border: hidden;"><%= numero; %></td>
+            <td colspan='2' style=" border: hidden;"></td>
+            <td style="border: hidden;">TÉCNICO</td>
+            <td style="border: hidden;"></td>
+        </tr>
+        <tr>
+            <td style=" border: hidden;">FECHA:</td>
+            <td style="border: hidden;"><%= fechaEvento; %></td>
+            <td colspan='2' style=" border: hidden;"></td>
+            <td style="border: hidden;">HORA:</td>
+            <td style="border: hidden;"><%= horaEvento; %></td>
+        </tr>
+    </table>
+    <br>
+    <table style="width:100%">
+        <tr>
+            <td class="font-weight-bold" colspan='1'>ITEM</td>
+            <td class="font-weight-bold" colspan='3'>CÓDIGO MATERIAL</td>
+            <td class="font-weight-bold" colspan='4'>DESCRIPCIÓN</td>
+            <td class="font-weight-bold" colspan='1'>CANT.</td>
+            <td class="font-weight-bold">FECHA PEDIDO</td>
+            <td class="font-weight-bold">HORA PEDIDO</td>
+            <td class="font-weight-bold">AUTORIZADO POR</td>
+
+        </tr>
+
+        <tr>
+            <td  colspan='1'>
+                <table style="width:100%; border: hidden;">
+                    <% codigoMaterial.forEach((codigoMaterial, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= index; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td  colspan='3'>
+                <table style="width:100%; border: hidden;">
+                    <% codigoMaterial.forEach((codigoMaterial, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= codigoMaterial; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td  colspan='4'>
+                <table style="width:100%; border: hidden;">
+                    <% descripcionMaterial.forEach((descripcionMaterial, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= descripcionMaterial; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td  colspan='1'>
+                <table style="width:100%; border: hidden;">
+                    <% cantidad.forEach((cantidad, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= cantidad; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td >
+                <table style="width:100%; border: hidden;">
+                    <% fechaPedido.forEach((fechaPedido, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= fechaPedido; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td >
+                <table style="width:100%; border: hidden;">
+                    <% horaPedido.forEach((horaPedido, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= horaPedido; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td >
+                <table style="width:100%; border: hidden;">
+                    <% autorizadoPor.forEach((autorizadoPor, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= autorizadoPor; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <table style=" border: hidden;">
+        <tr style=" border: hidden;">
+            <td style=" border: hidden;">
+                <table style="width:100%; border: hidden;">
+                    <tr style=" border: hidden;">
+                        <td class="font-weight-bold" v colspan='12'>SOLICITADO POR</td>
+                    </tr>
+                    <tr style=" border: hidden;">
+                        <td colspan='3' style=" border: hidden;">Nombre:</td>
+                        <td colspan='3' style=" border: hidden;"></td>
+                        <td colspan='3' style=" border: hidden;">Firma:</td>
+                        <td colspan='3' style=" border: hidden;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td style=" border: hidden;">
+                <table style="width:100%">
+                    <tr style=" border: hidden;">
+                        <td style=" border: hidden;" class="font-weight-bold" colspan='12'>AUTORIZADOR POR</td>
+                    </tr>
+                    <tr style=" border: hidden;">
+                        <td colspan='3' style=" border: hidden;">Nombre:</td>
+                        <td colspan='3' style=" border: hidden;"></td>
+                        <td colspan='3' style=" border: hidden;">Firma:</td>
+                        <td colspan='3' style=" border: hidden;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <table style="width:100%">
+        <tr>
+            <td class="font-weight-bold" colspan='3'>LUBRICANTE</td>
+            <td class="font-weight-bold" colspan='3'>CANTIDAD</td>
+            <td class="font-weight-bold" colspan='6'>TRABAJOS TERCERIZADOS</td>
+        </tr>
+        <tr>
+            <td colspan='3' >
+                <table style="width:100%; border: hidden;">
+                    <% lubricante.forEach((lubricante, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= lubricante; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td colspan='3' >
+                <table style="width:100%; border: hidden;">
+                    <% cantidadLubricante.forEach((cantidadLubricante, index) => { %>
+                        <tr style="border: hidden;">
+                            <td colspan="4" style="border: hidden;"> <%= cantidadLubricante; %></td>
+
+                        </tr>
+
+                    <% }); %>
+                </table>
+            </td>
+            <td class="font-weight-bold" colspan='6' rowspan='8'>
+                <%= trabajosRealizadosReq; %>
+            </td>
+        </tr>
+       <!-- <tr>
+            <td class="font-weight-bold" colspan='3'>Aceite SAE 80 w 90</td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" colspan='3'>Aceite SAE Hidraúlico</td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" colspan='3'>Aceite SAE 85/140</td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" colspan='3'>ISO 68</td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" colspan='3'>ISO 46</td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" colspan='3'>ATF</td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" colspan='3'></td>
+            <td class="font-weight-bold" colspan='3'></td>
+        </tr>
+-->
+    </table>
+
+    <br>
+    <div style='background-color: #1d2124; color: white'>
+        <div class="font-weight-bold"> MANO OBRA</div>
+    </div>
+    <br>
+    <div class="font-weight-normal" >
+        <table style="width:100%">
+            <tr>
+                <td class="font-weight-bold">
+                    <%= manoObra; %>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <br>
+
+    <div class="font-weight-normal">
+        <table style="width:100%;border: hidden;" >
+            <tr style=" border: hidden;">
+                <td  style=" border: hidden;" class="font-weight-bold">Fecha</td>
+                <td  style=" border: hidden;" colspan="3"> <%= fechaEvento; %></td>
+                <td  style=" border: hidden;" class="font-weight-bold">Hora</td>
+                <td style=" border: hidden;" colspan="3"> <%= horaEvento; %></td>
+                <td  style=" border: hidden;" class="font-weight-bold">Recibido por:</td>
+                <td  style=" border: hidden;" colspan="3"></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

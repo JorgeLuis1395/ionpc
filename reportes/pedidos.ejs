@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reporte CRM</title>
+    <% include general.ejs %>
+
+    <style>
+        .border-report {
+            border: 2px solid;
+        }
+
+        .rotate {
+            /* FF3.5+ */
+            -moz-transform: rotate(-90.0deg);
+            /* Opera 10.5 */
+            -o-transform: rotate(-90.0deg);
+            /* Saf3.1+, Chrome */
+            -webkit-transform: rotate(-90.0deg);
+            /* IE6,IE7 */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* Standard */
+            transform: rotate(-90.0deg);
+        }
+    </style>
+</head>
+<body>
+<div><span style='color: #0a27de; font-size: 20px'>Notificación de Pedido</span>
+</div>
+<div>
+
+    <table style="width:100%; border: hidden; margin-top: 5%">
+        <tr>
+            <td colspan="5" rowspan='2'><img src="<%= logo; %>" style="width: 16em; border: hidden" alt="logo">
+            </td>
+            <td class="font-weight-bold" style='border: hidden'>FECHA PEDIDO</td>
+            <td colspan="3" style='border: hidden'></td>
+            <td class="font-weight-bold" rowspan='2' style='border: hidden'>N°</td>
+            <td colspan="3" rowspan='2' style='border: hidden'></td>
+        </tr>
+    </table>
+
+    <ol>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> DATOS GENERALES
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%">
+                <tr>
+                    <td class="font-weight-bold">CLIENTE</td>
+                    <td colspan="5"><%= cliente; %></td>
+                    <td class="font-weight-bold">TELF</td>
+                    <td colspan="5"><%= telefono; %></td>
+                </tr>
+
+                <tr>
+                    <td class="font-weight-bold">CORREO</td>
+                    <td colspan="5"><%= correo; %></td>
+                    <td class="font-weight-bold">CED.</td>
+                    <td colspan="5"><%= ced; %></td>
+                </tr>
+
+                <tr>
+                    <td class="font-weight-bold">UBICACIÓN</td>
+                    <td colspan="12"><%= ubicacion; %></td>
+
+                </tr>
+
+            </table>
+        </div>
+        <br>
+        </li>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> SOLICITUD DEL CLIENTE
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%; border: hidden;">
+                <tr style="border: hidden;">
+                    <td colspan="12" class="font-weight-bold" style="border: hidden;"><%= solicitud; %></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> Pedido
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%; border: hidden;">
+                <tr style=" border: hidden;">
+                    <td style=" border: hidden;">
+                        <table style="width:100%; border: hidden;">
+
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;" class='font-weight-bold'> Producto</td>
+
+                                </tr>
+
+
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;" class='font-weight-bold'> Tipo de Producto</td>
+                                </tr>
+
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;" class='font-weight-bold'> Cantidad</td>
+                                </tr>
+
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;" class='font-weight-bold'> Valor</td>
+                                </tr>
+
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;" class='font-weight-bold'> Comentario</td>
+                                </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%; border: hidden;">
+                <tr style=" border: hidden;">
+                    <td style=" border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% insumo.forEach((insumoItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= insumoItem; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% descripcion.forEach((descripcionItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= descripcionItem; %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% repuesto.forEach((repuestoItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= repuestoItem; %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% valor.forEach((valorItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= valorItem; %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% comentario.forEach((comentarioItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= comentarioItem; %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        </li>
+
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> OBSERVACIONES Y RECOMENDACIONES
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%;border: hidden;">
+                <tr style="border: hidden;">
+                    <td colspan="12" style="border: hidden;"> <%= observaciones; %></td>
+                </tr>
+                <tr style="border: hidden;">
+                    <td colspan="12" style="border: hidden;"> <%= recomendaciones; %></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+
+        <div class="border-report">
+            <h3 class="text-center my-0">CROQUIS DE UBICACIÓN</h3>
+            <img src="<%= mapa %>" alt="mapa" class="rounded mx-auto d-block" style="width: 22rem; height:17rem">
+        </div>
+
+        <div><p style='font-size: 10px'>El cliente autoriza al concesionario a realizar los trabajos detallados en este
+                documento para evaluar y
+                reparar el equipo, según valor
+                acordado. Declara recibido el equipo a su entera satisfacción conforme a lo establecido y detallado en
+                el
+                presente documento.</p>
+        </div>
+        <br>
+        </li>
+
+        <br>
+        <div>
+            <table style="width:100%; border: hidden; margin-top: 5%">
+                <tr>
+                    <td colspan="4" style='border: hidden'>
+                        <b>GARANTÍA:</b>
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'><b>ENTREGA:</b>
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'> Nombre:</td>
+                    <td colspan="2" style='border: hidden'></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style='border: hidden'>
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'>Cédula</td>
+                    <td colspan="2" style='border: hidden'></td>
+
+                </tr>
+                <tr>
+                    <td colspan="4" class='font-weight-bold' style='border: hidden'>
+                        TECNICO
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'><%= tecnico; %></td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'>FIRMA</td>
+                    <td colspan="2" style='border: hidden'></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style='border: hidden'>
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'>
+                    <img src=''>
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="2" class='font-weight-bold' style='border: hidden'>AUTORIZACIÓN</td>
+                </tr>
+
+            </table>
+            <div>
+                <p style='font-size: 10px'>
+                    ORIGINAL BLANCO: UNIDAD / COPIA AZUL: CLIENTE / COPIA ROSADA: REPUESTOS / COPIA AMARILLA: TALLER</p>
+            </div>
+        </div>
+    </ol>
+</div>
+
+
+</body>
+</html>

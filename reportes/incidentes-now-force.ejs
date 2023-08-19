@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reporte WRAD</title>
+    <% include general.ejs %>
+
+    <style>
+        .border-report {
+            border: 2px solid;
+        }
+
+        .rotate {
+            /* FF3.5+ */
+            -moz-transform: rotate(-90.0deg);
+            /* Opera 10.5 */
+            -o-transform: rotate(-90.0deg);
+            /* Saf3.1+, Chrome */
+            -webkit-transform: rotate(-90.0deg);
+            /* IE6,IE7 */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* Standard */
+            transform: rotate(-90.0deg);
+        }
+    </style>
+</head>
+<body>
+<img src="<%= logo %>" style="width: 11em; position: absolute; top:0; right: 5px;" alt="logo">
+<div class="text-center mt-6">
+    <h3>MUNICIPIO DEL DISTRITO METROPOLITANO DE QUITO</h3>
+    <h4 style="margin-top: -0.5em;">ADMINISTRACIÓN MUNICIPAL ZONAL <%= administracionZonal.toUpperCase() %></h4>
+    <h4 style="margin-top: -0.5em;">Unidad de Seguridad y Convivencia Ciudadana</h4>
+</div>
+<div>
+    <span class="border-report px-2">Informe No. IP-USCC-AMZ<%= numero %>  </span>
+    <span class="border-report px-2 float-right">Fecha de Inspección: <%= fechaInspeccion %></span>
+
+    <div class="text-white text-center mt-2 p-2" style="background-color: #c00000;">
+        <div>INFORME ATENCIÓN EMERGENCIA <%= tipoEvento.toUpperCase() %> -
+            PARROQUIA <%= parroquia.toUpperCase() %></div>
+        <div>Informe Preliminar</div>
+    </div>
+
+    <ol>
+        <li class="font-weight-bold">Datos Generales
+            <div class="font-weight-normal" style="margin-left: -2.5rem;">
+                <table style="width:100%">
+                    <tr>
+                        <td class="font-weight-bold">Fecha del Evento</td>
+                        <td colspan="6"><%= fechaEvento %></td>
+                        <td class="font-weight-bold">Fecha de Inspección</td>
+                        <td colspan="3"><%= fechaInspeccion %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Inspección</td>
+                        <td style="font-size: smaller">Inicial</td>
+                        <td style="font-size: smaller"><%= inspeccionInicial %></td>
+                        <td style="font-size: smaller">Seguimiento</td>
+                        <td style="font-size: smaller"><%= inspeccionSeguimiento %></td>
+                        <td style="font-size: smaller">Cierre</td>
+                        <td style="font-size: smaller"><%= inspeccionCierre %></td>
+                        <td style="font-size: smaller">Hora Inicial</td>
+                        <td style="font-size: smaller"><%= inspeccionHoraInicial %></td>
+                        <td style="font-size: smaller">Hora Fin</td>
+                        <td style="font-size: smaller"><%= inspeccionHoraFin %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Administración Zonal</td>
+                        <td colspan="3"><%= administracionZonal %></td>
+                        <td class="font-weight-bold">Parroquia</td>
+                        <td colspan="6"><%= parroquia %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Barrio / Sector</td>
+                        <td colspan="3"><%= barrio %></td>
+                        <td class="font-weight-bold">Dirección</td>
+                        <td colspan="6"><%= direccion %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Referencia</td>
+                        <td colspan="10"><%= referencia %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Solicitado por</td>
+                        <td colspan="10"><%= solicitadoPor %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Tipo de Evento</td>
+                        <td colspan="10"><%= tipoEvento %></td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">Coordenadas Geográficas</td>
+                        <td colspan="3">
+                            Latitud: <%= latitud %><br>
+                            Longitud: <%= longitud %>
+                        </td>
+                        <td class="font-weight-bold">Coordenadas UTM</td>
+                        <td colspan="6">
+                            Zona: <%= zona %><br>
+                            Coord X: <%= coordenadaX %><br>
+                            Coord Y: <%= coordenadaY %>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="border-report">
+                    <h3 class="text-center my-0">CROQUIS DE UBICACIÓN</h3>
+                    <img src="<%= mapa %>" alt="mapa" class="rounded mx-auto d-block" style="width: 22rem; height:17rem">
+                </div>
+
+            </div>
+            <br><br>
+        </li>
+        <li class="font-weight-bold">Descripción de la Emergencia
+            <div class="font-weight-normal" style="margin-left: -2.5rem;">
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="6" class="font-weight-bold">Número de familias afectadas:</td>
+                        <td colspan="6" class="text-center"><%= numeroFamiliasAfectadas %></td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            <ol>
+                <li>Integrantes de la Familia
+                    <div class="font-weight-normal" style="margin-left: -5rem;">
+                        <table style="width:100%">
+                            <tr>
+                                <td rowspan="2" colspan="1" class="font-weight-bold text-center">Nº</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold">Familia N°</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold">Nombres</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold">Sexo</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold">Edad</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold">Cédula</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold">Parentesco</td>
+                                <td colspan="2" class="font-weight-bold text-center">Tallas</td>
+                                <td rowspan="2" colspan="2" class="font-weight-bold">N° Telf. Contacto</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Prendas de Vestir</td>
+                                <td class="font-weight-bold">Calzado</td>
+                            </tr>
+                            <% integrantesFamilia.forEach((integranteFamiliaItem, index) => { %>
+                                <tr>
+                                    <td class="text-center"><%= index + 1 %></td>
+                                    <td><%= integranteFamiliaItem.familia %></td>
+                                    <td><%= integranteFamiliaItem.nombres %></td>
+                                    <td><%= integranteFamiliaItem.sexo %></td>
+                                    <td><%= integranteFamiliaItem.edad %></td>
+                                    <td><%= integranteFamiliaItem.cedula %></td>
+                                    <td><%= integranteFamiliaItem.parentesco %></td>
+                                    <td><%= integranteFamiliaItem.vestimenta %></td>
+                                    <td><%= integranteFamiliaItem.calzado %></td>
+                                    <td><%= integranteFamiliaItem.numeroTelefonoContacto %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                        <br>
+                    </div>
+                </li>
+                <li>Daños a la Vida y Salud
+                    <div class="font-weight-normal" style="margin-left: -5rem;">
+                        <table style="width:100%">
+                            <tr>
+                                <td rowspan="2" colspan="1" class="font-weight-bold"></td>
+                                <td rowspan="1" colspan="2" class="font-weight-bold">Afectados</td>
+                                <td rowspan="1" colspan="2" class="font-weight-bold">Albergados</td>
+                                <td rowspan="1" colspan="2" class="font-weight-bold">Damnificados</td>
+                                <td rowspan="2" colspan="2" class="font-weight-bold text-center">Heridos</td>
+                                <td rowspan="2" colspan="1" class="font-weight-bold text-center">Fallecido(s)</td>
+                                <td rowspan="2" colspan="2" class="font-weight-bold text-center">Renuentes</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold text-center">M</td>
+                                <td class="font-weight-bold text-center">H</td>
+                                <td class="font-weight-bold text-center">M</td>
+                                <td class="font-weight-bold text-center">H</td>
+                                <td class="font-weight-bold text-center">M</td>
+                                <td class="font-weight-bold text-center">H</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Nº Familias</td>
+                                <td colspan="2" class="text-center"><%= numeroFamiliasAfectadas %></td>
+                                <td colspan="2" class="text-center"><%= numeroFamiliasAlbergados %></td>
+                                <td colspan="2" class="text-center"><%= numeroFamiliasDamnificados %></td>
+                                <td>Estable</td>
+                                <td>Crítico</td>
+                                <td class="text-center"><%= numeroFamiliasRenuentes %></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold">Nº Personas</td>
+                                <td class="text-center"><%= numeroPersonasAfectadosMujeres %></td>
+                                <td class="text-center"><%= numeroPersonasAfectadosHombres %></td>
+                                <td class="text-center"><%= numeroPersonasAlbergadosMujeres %></td>
+                                <td class="text-center"><%= numeroPersonasAlbergadosHombres %></td>
+                                <td class="text-center"><%= numeroPersonasDamnificadosMujeres %></td>
+                                <td class="text-center"><%= numeroPersonasDamnificadosHombres %></td>
+                                <td class="text-center"><%= numeroPersonasHeridosEstables %></td>
+                                <td class="text-center"><%= numeroPersonasHeridosCriticos %></td>
+                                <td class="text-center"><%= numeroPersonasFallecidos %></td>
+                                <td class="text-center"><%= numeroPersonasRenuentes %></td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+                </li>
+            </ol>
+        </li>
+        <li class="font-weight-bold">Daños Materiales
+            <ol>
+                <li>Bienes Inmuebles
+                    <ol>
+                        <li>Tipo de Construcción
+                            <div class="font-weight-normal" style="margin-left: -7.5rem;">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="font-weight-bold">Metálica</td>
+                                        <td><%= metalica %></td>
+                                        <td class="font-weight-bold">Hormigón Armado</td>
+                                        <td><%= hormigonArmado %></td>
+                                        <td class="font-weight-bold">Adobe</td>
+                                        <td><%= adobe %></td>
+                                        <td class="font-weight-bold">Madera</td>
+                                        <td><%= madera %></td>
+                                        <td class="font-weight-bold">Mixta</td>
+                                        <td><%= mixta %></td>
+                                        <td class="font-weight-bold">Otros</td>
+                                        <td><%= otros %></td>
+                                    </tr>
+                                </table>
+                                <br>
+                            </div>
+                        </li>
+                        <li>Daños que se Evidencian
+                            <div class="font-weight-normal" style="margin-left: -7.5rem;">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="font-weight-bold">
+                                            <br>Estructuras / Dependencias
+                                            <br>
+                                            <br>
+                                        </td>
+                                        <td class="rotate">VESTIBULO</td>
+                                        <td class="rotate">COMEDOR</td>
+                                        <td class="rotate">PASILLO</td>
+                                        <td class="rotate">COCINA</td>
+                                        <td class="rotate">SSHH</td>
+                                        <td class="rotate">DORMITORIOS</td>
+                                        <td class="rotate">GARAGE</td>
+                                        <td class="rotate">ED. ADICIONALES</td>
+                                        <td class="rotate">PATIO/ JARDÍN</td>
+                                    </tr>
+                                    <tr>
+
+
+                                        <td class="font-weight-bold">MAMPOSTERÍA</td>
+                                        <% mamposteriaAux.forEach((mamposteria) => { %>
+                                            <td><%= mamposteria.vestibulo %></td>
+                                            <td><%= mamposteria.comedor %></td>
+                                            <td><%= mamposteria.pasillo %></td>
+                                            <td><%= mamposteria.cocina %></td>
+                                            <td><%= mamposteria.sshh %></td>
+                                            <td><%= mamposteria.dormitorios %></td>
+                                            <td><%= mamposteria.garage %></td>
+                                            <td><%= mamposteria.edAdicionales %></td>
+                                            <td><%= mamposteria.patioJardin %></td>
+                                        <% }); %>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">CUBIERTA</td>
+                                        <% cubiertaAux.forEach((cubierta) => { %>
+                                            <td><%= cubierta.vestibulo %></td>
+                                            <td><%= cubierta.comedor %></td>
+                                            <td><%= cubierta.pasillo %></td>
+                                            <td><%= cubierta.cocina %></td>
+                                            <td><%= cubierta.sshh %></td>
+                                            <td><%= cubierta.dormitorios %></td>
+                                            <td><%= cubierta.garage %></td>
+                                            <td><%= cubierta.edAdicionales %></td>
+                                            <td><%= cubierta.patioJardin %></td>
+                                        <% }); %>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">PISO</td>
+                                        <% pisoAux.forEach((piso) => { %>
+                                            <td><%= piso.vestibulo %></td>
+                                            <td><%= piso.comedor %></td>
+                                            <td><%= piso.pasillo %></td>
+                                            <td><%= piso.cocina %></td>
+                                            <td><%= piso.sshh %></td>
+                                            <td><%= piso.dormitorios %></td>
+                                            <td><%= piso.garage %></td>
+                                            <td><%= piso.edAdicionales %></td>
+                                            <td><%= piso.patioJardin %></td>
+                                        <% }); %>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">ENTREPISO</td>
+                                        <% entrepisoAux.forEach((entrepiso) => { %>
+                                            <td><%= entrepiso.vestibulo %></td>
+                                            <td><%= entrepiso.comedor %></td>
+                                            <td><%= entrepiso.pasillo %></td>
+                                            <td><%= entrepiso.cocina %></td>
+                                            <td><%= entrepiso.sshh %></td>
+                                            <td><%= entrepiso.dormitorios %></td>
+                                            <td><%= entrepiso.garage %></td>
+                                            <td><%= entrepiso.edAdicionales %></td>
+                                            <td><%= entrepiso.patioJardin %></td>
+                                        <% }); %>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="font-weight-bold">COLUMNAS</td>
+                                        <% columnasAux.forEach((columnas) => { %>
+                                            <td><%= columnas.vestibulo %></td>
+                                            <td><%= columnas.comedor %></td>
+                                            <td><%= columnas.pasillo %></td>
+                                            <td><%= columnas.cocina %></td>
+                                            <td><%= columnas.sshh %></td>
+                                            <td><%= columnas.dormitorios %></td>
+                                            <td><%= columnas.garage %></td>
+                                            <td><%= columnas.edAdicionales %></td>
+                                            <td><%= columnas.patioJardin %></td>
+                                        <% }); %>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">VENTANAS</td>
+                                        <% ventanasAux.forEach((ventanas) => { %>
+                                            <td><%= ventanas.vestibulo %></td>
+                                            <td><%= ventanas.comedor %></td>
+                                            <td><%= ventanas.pasillo %></td>
+                                            <td><%= ventanas.cocina %></td>
+                                            <td><%= ventanas.sshh %></td>
+                                            <td><%= ventanas.dormitorios %></td>
+                                            <td><%= ventanas.garage %></td>
+                                            <td><%= ventanas.edAdicionales %></td>
+                                            <td><%= ventanas.patioJardin %></td>
+                                        <% }); %>
+                                    </tr>
+                                </table>
+                                <br>
+                                <div style="width: 4rem">
+                                    <table style="width:100%">
+                                        <tr>
+                                            <td class="font-weight-bold">Cód.</td>
+                                            <td class="font-weight-bold text-center">AFECTACIÓN</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>FISURA</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>GRIETA</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>SEPARACIÓN</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>DESPRENDIMIENTO</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5.</td>
+                                            <td>CAIDA A DISTINTO NIVEL</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6.</td>
+                                            <td>INCENDIADO</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7.</td>
+                                            <td>INUNDADO</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8.</td>
+                                            <td>ENTERRADO</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br>
+                        </li>
+                    </ol>
+                </li>
+                <li>Bienes Muebles Afectados
+                    <div class="font-weight-normal" style="margin-left: -5rem;">
+                        <table style="width:100%">
+                            <tr>
+                                <td class="font-weight-bold" style="background-color: #dbe5f1">Bienes Muebles Perdidos
+                                </td>
+                                <td><%= bienesMueblesPerdidos %></td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+                </li>
+            </ol>
+        </li>
+        <li class="font-weight-bold">Requerimiento de Asistencia Humanitaria
+            <div class="font-weight-normal" style="margin-left: -2.5rem;">
+                <table style="width:100%">
+                    <tr >
+                        <td rowspan="2" class="font-weight-bold">Familia No.</td>
+                        <td rowspan="2" class="font-weight-bold">VESTIMENTA</td>
+                        <td rowspan="2" class="font-weight-bold" >CALZADO</td>
+                        <td rowspan="2" class="font-weight-bold">FRAZADAS</td>
+                        <td colspan="2" class="font-weight-bold">ALIMENTOS</td>
+                        <td colspan="2" class="font-weight-bold">KIT</td>
+						<td rowspan="2" class="font-weight-bold">TOALLAS</td>
+                    </tr>
+                    <tr>
+                        <td class="font-weight-bold">PREPARADOS</td>
+                        <td class="font-weight-bold">NO PERECIBLES</td>
+						<td class="font-weight-bold">HIGIENE</td>
+						<td class="font-weight-bold">ESCOLAR</td>
+                    </tr>
+                    <% dataDD.forEach((dataDD) => { %>
+                        <tr>
+                            <td><%= dataDD.familia%></td>
+                            <td><%= dataDD.vestimenta %></td>
+                            <td><%= dataDD.calzado %></td>
+                            <td><%= dataDD.frazada %></td>
+                            <td><%= dataDD.alimentosPerecibles %></td>
+                            <td><%= dataDD.alimentosNoPerecibles %></td>
+                            <td><%= dataDD.kitHigiene %></td>
+							<td><%= dataDD.kitEscolar %></td>
+                            <td><%= dataDD.toallas %></td>
+							
+                        </tr>
+                    <% }); %>
+                </table>
+                <br>
+            </div>
+			
+			<div class="font-weight-normal" style="margin-left: -2.5rem;">
+                <table style="width:100%">
+                    <tr>
+                        <td rowspan="1" class="font-weight-bold">Familia No.</td>
+                       
+					
+						<td rowspan="1" class="font-weight-bold">MEDICINAS </td>
+						<td rowspan="1" class="font-weight-bold">GASTOS MORTUORIOS</td>
+                        <td rowspan="1" class="font-weight-bold">REPOSICION DE MENAJE</td>
+						<td rowspan="1" class="font-weight-bold">OTROS</td>
+                    </tr>
+                   
+                    <% dataDD.forEach((dataDD) => { %>
+                        <tr>
+                             <td><%= dataDD.familia%></td>
+                            <td><%= dataDD.medicinas %></td>
+							<td><%= dataDD.gastosMortuorios %></td>
+						    <td><%= dataDD.bienesMuebles %></td>
+							<td><%= dataDD.otros %></td>
+							
+                        </tr>
+                    <% }); %>
+                </table>
+                <br>
+            </div>
+        </li>
+        <li class="font-weight-bold" style="margin-left: -2.5rem;">Instituciones de Participantes
+            <div class="font-weight-normal">
+                <table style="width:100%">
+                    <tr>
+                        <td class="font-weight-bold">Institución</td>
+                        <td class="font-weight-bold">No. Participantes</td>
+                        <td class="font-weight-bold">Recursos Materiales</td>
+                        <td class="font-weight-bold">Observaciones</td>
+                    </tr>
+
+                    <% recursosEnviados.forEach((recursoItem, index) => { %>
+                        <tr>
+
+                            <td><%= recursoItem.institucion %></td>
+                            <td><%= recursoItem.numeroParticipantes %></td>
+                            <td><%= recursoItem.recursosMateriales %></td>
+                            <td><%= recursoItem.observaciones %></td>
+                        </tr>
+                    <% }); %>
+                </table>
+                <br>
+            </div>
+        </li>
+        <li class="font-weight-bold border-report" style="margin-left: -2.5rem;">Acciones realizadas: <span
+                    class="font-weight-normal"><%= acciones %></span>
+        </li>
+        <br>
+        <li class="font-weight-bold border-report" style="margin-left: -2.5rem;">Recomendaciones: <span
+                    class="font-weight-normal"><%= recomendacionesAux %></span>
+        </li>
+        <br>
+        <li class="font-weight-bold" style="margin-left: -2.5rem;">Soportes y Anexos
+            <div class="font-weight-normal">
+                <p><span class="font-weight-bold">Anexo 1. </span>Respaldo Fotográfico <br>
+
+
+                <div class="font-weight-normal">
+                    <table style="width:100%">
+                        <tr>
+                            <% if (imagen1 != "") { %>
+                                <td><img src="<%= imagen1 %>" style="width: 25em; height:20em" alt="nowforce1"></td>
+                            <% } %>
+
+                            <% if (imagen2 != "") { %>
+                                <td><img src="<%= imagen2 %>" style="width: 25em; height:20em " alt="nowforce2"></td>
+                            <% } %>
+
+                        </tr>
+                        <tr>
+                            <% if (imagen3 != "") { %>
+                                <td><img src="<%= imagen3 %>" style="width: 25em; height:20em" ></td>
+                            <% } %>
+
+
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+                <% if (anexo2 != "") { %>
+                    <span class="font-weight-bold">Anexo 2. </span>Copia de informe de CBQ <br>
+                <% } %>
+                <% if (anexo3 != "") { %>
+                    <span class="font-weight-bold">Anexo 3. </span>Copias de cédula <br>
+                <% } %>
+
+
+                </p>
+            </div>
+        </li>
+        <li class="font-weight-bold" style="margin-left: -2.5rem;">Firmas de Responsabilidad
+            <div>
+                <table style="width:100%">
+                    <tr style="background-color: #1F497D">
+                        <td class="font-weight-bold text-white text-center">NOMBRE</td>
+                        <td class="font-weight-bold text-white text-center">CARGO</td>
+                        <td class="font-weight-bold text-white text-center">RESPONSABILIDAD</td>
+                        <td class="font-weight-bold text-white text-center">FECHA</td>
+                        <td class="font-weight-bold text-white text-center">FIRMA</td>
+                    </tr>
+                    <tr class="font-weight-normal">
+                        <td><%= nombreTecnico %></td>
+                        <td><%= cargoTecnico %>
+                        </td>
+                        <td style="width:20%"><%= responsabilidadTecnico %>
+                        </td>
+                        <td style="width:15%"><%= fechaImpresion %></td>
+                        <td style="width:30%; height: 70px"></td>
+                    </tr>
+                    <tr class="font-weight-normal">
+
+                        <td><%= nombreRevisor %>
+                        </td>
+                        <td><%= cargoRevisor %></td>
+                        <td style="width:20%"><%= responsabilidadRevisor %></td>
+                        <td style="width:15%"><%= fechaImpresion %></td>
+                        <td style="width:30%; height: 70px"></td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+        </li>
+    </ol>
+</div>
+</body>
+</html>
+

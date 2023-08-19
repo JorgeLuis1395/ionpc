@@ -1,0 +1,40 @@
+import * as mongoose from 'mongoose';
+
+const Schema = mongoose.Schema;
+export const IncidenteDataSchema = new mongoose.Schema({
+  id: String,
+  ubicacion: String,
+  incidente: String,
+  fecha_creacion: { type: Date, default: Date.now },
+  fecha_actualizacion: { type: Date, default: Date.now },
+  fecha_incidente: { type: Date, default: Date.now },
+  fecha_posible_cierre: { type: Date },
+  fecha_cierre: { type: Date },
+  descripcion_ubicacion: { type: String, default: '' },
+  tipo_incidente: String,
+  categoria: String,
+  comentario_incidente: { type: String, default: '' },
+  geocerca: { type: String, default: '' },
+  latitud: { type: Array, default: [] },
+  longitud: String,
+  estado_incidente: { type: String, default: 'Abierto' },
+  formulario: { type: Array, default: [] },
+  formularioDatos: { type: Array, default: [] },
+  usuariosEntrada: { type: Array, default: [] },
+  usuariosSalida: { type: Array, default: [] },
+  idEventoAnterior: String,
+  evento_padre: String,
+  cantidad_procesos: Number,
+  subtareas: { type: Array, default: [] },
+  id_usuario_pcr: Number,
+  nombre_usuario_pcr: String,
+  id_usuario_vepidemiologica: Number,
+  nombre_usuario_vepidemiologica: String,
+  resultado_prueba: String,
+
+  trabajador_afiliado: String,
+  correo_usuario: String,
+  telefono_usuario: String,
+  ficha_ecu: String,
+
+});

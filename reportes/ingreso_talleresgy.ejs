@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reporte CRM</title>
+    <% include general.ejs %>
+
+    <style>
+        .border-report {
+            border: 2px solid;
+        }
+
+        .rotate {
+            /* FF3.5+ */
+            -moz-transform: rotate(-90.0deg);
+            /* Opera 10.5 */
+            -o-transform: rotate(-90.0deg);
+            /* Saf3.1+, Chrome */
+            -webkit-transform: rotate(-90.0deg);
+            /* IE6,IE7 */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* Standard */
+            transform: rotate(-90.0deg);
+        }
+    </style>
+</head>
+<body>
+<div><span style='color: lightpink; font-size: 11px'>REVERSO SOLO VA IMPRESA LA HOJA ROSADA</span>
+    <span style='font-size: 12px'>TINTA AZUL ANTERIOR 2021/02 ESTE ES DE OT MAQUINARIA CUE ACTUAL 2021/09</span>
+</div>
+<div>
+
+    <table style="width:100%; border: hidden; margin-top: 5%">
+        <tr>
+            <td colspan="5" rowspan='2'><img src="<%= logo; %>" style="width: 16em; border: hidden" alt="logo">
+            </td>
+            <td class="font-weight-bold" style='border: hidden'>INGRESO</td>
+            <td colspan="3" style='border: hidden'></td>
+            <td class="font-weight-bold" rowspan='2' style='border: hidden'>N°</td>
+            <td colspan="3" rowspan='2' style='border: hidden'></td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold" style='border: hidden'>SALIDA</td>
+            <td colspan="3" style='border: hidden'></td>
+        </tr>
+    </table>
+
+    <table style="width:100%; border: hidden; margin-top: 2%">
+        <tr>
+            <td style="font-size: smaller; border: hidden;">MANTENIMIENTO</td>
+            <td style="font-size: smaller;border: hidden;"></td>
+            <td style="font-size: smaller; border: hidden;">CORRECTIVO</td>
+            <td style="font-size: smaller; border: hidden;"></td>
+            <td style="font-size: smaller; border: hidden;">GARANTÍA</td>
+            <td style="font-size: smaller; border: hidden;"></td>
+            <td style="font-size: smaller; border: hidden;">INTERNO</td>
+            <td style="font-size: smaller;border: hidden;"></td>
+            <td style="font-size: smaller;border: hidden;">OTROS</td>
+            <td style="font-size: smaller;border: hidden;"></td>
+        </tr>
+    </table>
+
+
+    <ol>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> DATOS GENERALES
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%">
+                <tr>
+                    <td class="font-weight-bold">CLIENTE</td>
+                    <td colspan="5"><%= cliente; %></td>
+                    <td class="font-weight-bold">MARCA</td>
+                    <td colspan="5"><%= marca; %></td>
+                </tr>
+
+                <tr>
+                    <td class="font-weight-bold">TELF</td>
+                    <td colspan="5"><%= telefono; %></td>
+                    <td class="font-weight-bold">MODELO</td>
+                    <td colspan="5"><%= modelo; %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">CORREO</td>
+                    <td colspan="5"><%= correo; %></td>
+                    <td class="font-weight-bold">MAQ. SERIE</td>
+                    <td colspan="5"><%= maqSerie; %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">CED.</td>
+                    <td colspan="5"><%= ced; %></td>
+                    <td class="font-weight-bold">HORAS MAQ.</td>
+                    <td colspan="5"><%= horasMaq; %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">UBICACIÓN</td>
+                    <td colspan="5"><%= ubicacion; %></td>
+                    <td class="font-weight-bold">OPERATIVO</td>
+                    <td colspan="1">SI</td>
+
+                    <td colspan="1">
+                        <% if (operativo === "si") { %>
+                            x
+                        <% } %>
+                    </td>
+                    <td colspan="1">NO</td>
+                    <td colspan="1">
+                        <% if (operativo === "no") { %>
+                            x
+                        <% } %>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <br>
+        </li>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> SOLICITUD DEL CLIENTE
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%; border: hidden;">
+                <tr style="border: hidden;">
+                    <td colspan="12" class="font-weight-bold" style="border: hidden;"><%= solicitud; %></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        </li>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> TRABAJOS REALIZADOS
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%; border: hidden;">
+                <tr style="border: hidden;">
+                    <td colspan="12" style="border: hidden;" class="font-weight-bold"><%= trabajosRealizados; %></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        </li>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> INSUMOS Y REPUESTOS UTILIZADOS
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%; border: hidden;">
+                <tr style=" border: hidden;">
+                    <td style=" border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% insumo.forEach((insumoItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= insumoItem; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% descripcion.forEach((descripcionItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= descripcionItem; %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </td>
+
+                    <td style="border: hidden;">
+                        <table style="width:100%; border: hidden;">
+                            <% repuesto.forEach((repuestoItem, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= repuestoItem; %></td>
+                                </tr>
+                            <% }); %>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        </li>
+
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> OBSERVACIONES Y RECOMENDACIONES
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%;border: hidden;">
+                <tr style="border: hidden;">
+                    <td colspan="12" style="border: hidden;"> <%= observaciones; %></td>
+                </tr>
+                <tr style="border: hidden;">
+                    <td colspan="12" style="border: hidden;"> <%= recomendaciones; %></td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        <div><p style='font-size: 10px'>El cliente autoriza al concesionario a realizar los trabajos detallados en este
+                documento para evaluar y
+                reparar el equipo, según valor
+                acordado. Declara recibido el equipo a su entera satisfacción conforme a lo establecido y detallado en
+                el
+                presente documento.</p>
+        </div>
+        <br>
+        </li>
+        <div style='background-color: #1d2124; color: white'>
+            <li class="font-weight-bold"> HORAS DE:
+        </div>
+        <br>
+        <div class="font-weight-normal" style="margin-left: -2.5rem;">
+            <table style="width:100%">
+                <tr>
+                    <td class="font-weight-bold" colspan='3'>DÍAS TRABAJADOS</td>
+                    <td class="font-weight-bold">SALIDA</td>
+                    <td class="font-weight-bold" colspan=2'>LLEGADA COMIENZO TRABAJO</td>
+                    <td class="font-weight-bold" colspan='2'>TÉRMINO SALIDA TRABAJO</td>
+                    <td class="font-weight-bold">LLEGADA TALLER</td>
+                    <td class="font-weight-bold">T NORMAL</td>
+                    <td class="font-weight-bold">T EXTRA</td>
+                    <td class="font-weight-bold">TOTAL HORAS</td>
+
+                </tr>
+
+                <tr>
+                    <td  colspan='3'>
+                        <table style="width:100%; border: hidden;">
+                            <% diasTrabajador.forEach((dias, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= dias; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td >
+                        <table style="width:100%; border: hidden;">
+                            <% salida.forEach((salida, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= salida; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td  colspan='2'>
+                        <table style="width:100%; border: hidden;">
+                            <% llegadaComienzoTrabajo.forEach((llegadaComienzoTrabajo, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= llegadaComienzoTrabajo; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td  colspan='2'>
+                        <table style="width:100%; border: hidden;">
+                            <% terminoSalida.forEach((terminoSalida, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= terminoSalida; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td >
+                        <table style="width:100%; border: hidden;">
+                            <% llegadaTaller.forEach((llegadaTaller, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= llegadaTaller; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td >
+                        <table style="width:100%; border: hidden;">
+                            <% tNormal.forEach((tNormal, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= tNormal; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td >
+                        <table style="width:100%; border: hidden;">
+                            <% tExtra.forEach((tExtra, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= tExtra; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                    <td >
+                        <table style="width:100%; border: hidden;">
+                            <% totalHoras.forEach((totalHoras, index) => { %>
+                                <tr style="border: hidden;">
+                                    <td colspan="4" style="border: hidden;"> <%= totalHoras; %></td>
+
+                                </tr>
+
+                            <% }); %>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+        </div>
+        </li>
+        <br>
+        <div>
+            <table style="width:100%; border: hidden; margin-top: 5%">
+                <tr>
+                    <td colspan="4" style='border: hidden'>
+                        <b>GARANTÍA:</b> Los servicios ejecutados tienen garantía limitada en mano de obra y repuestos
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'><b>ENTREGA:</b> Declaro haber recibido mi máquina en
+                        perfectas
+                        condiciones y la explicación de los trabajos realizados cambiados
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'> Nombre:</td>
+                    <td colspan="2" style='border: hidden'></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style='border: hidden'>
+                        <img src="<%= firmaTecnico; %>" style="width: 16em; border: hidden" alt="logo">
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'>Cédula</td>
+                    <td colspan="2" style='border: hidden'></td>
+
+                </tr>
+                <tr>
+                    <td colspan="4" class='font-weight-bold' style='border: hidden'>
+                        TECNICO CONCESIONARIO
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'>FIRMA</td>
+                    <td colspan="2" style='border: hidden'></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style='border: hidden'>
+                    </td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="4" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td class="font-weight-bold" style='border: hidden'></td>
+                    <td colspan="2" class='font-weight-bold' style='border: hidden'>AUTORIZACIÓN</td>
+                </tr>
+
+            </table>
+            <div>
+                <p style='font-size: 10px'>Matriz Cuenca: Av. España 18-96 y Gil Ramírez Dávalos Telf. (593-7) 2 866
+                    999. Sucursal Quito: Av. Galo Plaza Lasso N55-011 y
+                    César Borja Lavayén Telf.: (593-2) 2815 225 Sucursal Guayaquil: Vía a Daule Km 4 1/2 Cel:
+                    593-984799625 Página Web: www.austral.com.ec
+                    ORIGINAL BLANCO: UNIDAD / COPIA AZUL: CLIENTE / COPIA ROSADA: REPUESTOS / COPIA AMARILLA: TALLER</p>
+            </div>
+        </div>
+    </ol>
+</div>
+
+
+</body>
+</html>
+

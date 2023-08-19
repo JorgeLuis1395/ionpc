@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Vepidemiologico</title>
+    <% include general.ejs %>
+
+    <style>
+
+
+        .border-report {
+            border: 2px solid;
+        }
+
+        .rotate {
+            /* FF3.5+ */
+            -moz-transform: rotate(-90.0deg);
+            /* Opera 10.5 */
+            -o-transform: rotate(-90.0deg);
+            /* Saf3.1+, Chrome */
+            -webkit-transform: rotate(-90.0deg);
+            /* IE6,IE7 */
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* Standard */
+            transform: rotate(-90.0deg);
+        }
+    </style>
+</head>
+<body>
+<table style="width:100%; border: hidden; margin-top: 5%">
+    <tr style=" border: hidden;">
+        <td style=" border: hidden; width: 30%" rowspan='4'>
+            <img src="<%= logo; %>" style="width:100%; border: hidden" alt="logo">
+        </td>
+        <td style=" border: hidden;">
+            <div class="cls_003"><span class="cls_003"><b>MINISTERIO DE SALUD PÚBLICA</b></span></div>
+        </td>
+    </tr>
+    <tr style=" border: hidden;">
+
+        <td style=" border: hidden;">
+            <div class="cls_003"><span class="cls_003"><b>DIRECCIÓN DISTRITAL 20D01 - SALUD</b></span></div>
+        </td>
+    </tr>
+    <tr style=" border: hidden;">
+
+        <td style=" border: hidden;">
+            <div class="cls_003"><span class="cls_003"><b>FORMULARIO DE VIGILANCIA EPIDEMIOLÓGICA</b></span></div>
+        </td>
+    </tr>
+    <tr style=" border: hidden;">
+
+        <td style=" border: hidden;">
+            <div class="cls_003"><span class="cls_003"><b>AL INGRESO DE RESIDENTES Y TRANSEÚNTES DE LA PROVINCIA DE GALÁPAGOS</b></span></div>
+        </td>
+    </tr>
+</table>
+
+
+<div class="cls_002"><span class="cls_002">1. DATOS PERSONALES (para residentes y transeúntes mayores de 12 años)</span>
+</div>
+
+<table style="width:100%; border: hidden; margin-top: 5%">
+    <tr>
+        <td style=" border: hidden;"><b>NOMBRES COMPLETOS:</b></td>
+        <td style="border: hidden;"><%= nombresCompleto; %> </td>
+
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>EDAD:</b></td>
+        <td style="border: hidden;"><%= edad; %> años</td>
+        <td style="border: hidden;"><b>SEXO:</b></td>
+        <td style="border: hidden;">M</td>
+        <% if(sexo === 'masculino'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+
+        <td style="border: hidden;">F</td>
+        <% if(sexo === 'femenino'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>NACIONALIDAD:</b></td>
+        <td style="border: hidden;"><%= nacionalidad; %> </td>
+        <td colspan='1' style=" border: hidden;"></td>
+        <td style="border: hidden;"><b>C.C. / PASAPORTE:</b></td>
+        <td style="border: hidden;"><%= pasaporte; %></td>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>ESTATURA (mts.): </b></td>
+        <td style="border: hidden;"><%= estatura; %> </td>
+        <td colspan='1' style=" border: hidden;"></td>
+        <td style="border: hidden;"><b>PESO (Kgs.):</b></td>
+        <td style="border: hidden;"><%= peso; %></td>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>LUGAR INICIO DEL VIAJE:</b></td>
+        <td style="border: hidden;"><%= inicioViaje; %> </td>
+        <td colspan='1' style=" border: hidden;"></td>
+        <td style="border: hidden;"><b>LUGAR DEL ÚLTIMO EMBARQUE:</b></td>
+        <td style="border: hidden;"><%= ultimoViaje; %></td>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>MENORES DE 12 AÑOS QUE VIAJAN CON USTED:</b></td>
+        <td style="border: hidden;">SI</td>
+        <% if(menores12 === 'Si'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">NO</td>
+        <% if(menores12 === 'No'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;"><b>EDADES (años):</b></td>
+        <td style="border: hidden;"><%= edadesMenores; %></td>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>CATEGORIA MIGRACIONAL:</b></td>
+        <td style="border: hidden;"> Residente Permanente</td>
+        <% if(categoriaMigracional === 'residente permanente'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">Residente Temporal</td>
+        <% if(categoriaMigracional === 'residente temporal'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">Transeúnde:</td>
+        <% if(categoriaMigracional === 'transeunte'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>LUGAR DE RESIDENCIA O TRABAJO:</b></td>
+        <td style="border: hidden;"> San Cristóbal</td>
+        <% if(lugarResidencia === 'san cristobal'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">Santa Cruz</td>
+        <% if(lugarResidencia === 'santa cruz'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">Isabela:</td>
+        <% if(lugarResidencia === 'isabela'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">Floreana:</td>
+        <% if(lugarResidencia === 'floreana'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>DIRECCIÓN DE RESIDENCIA:</b></td>
+        <td style="border: hidden;"><%= direccionResidencia; %></td>
+
+    </tr>
+
+    <tr>
+        <td style=" border: hidden;"><b>TELEFONO DE REFERENCIA (domicilio y/o celular):</b></td>
+        <td style="border: hidden;"><%= telefonoResidencia; %> </td>
+        <td colspan='1' style=" border: hidden;"></td>
+        <td style="border: hidden;"><b>CORREO ELECTRÓNICO:</b></td>
+        <td style="border: hidden;"><%= correoElectronico; %></td>
+    </tr>
+
+</table>
+
+<br>
+
+<div class="cls_002"><span class="cls_002">2. DATOS DE ESTADO DE SALUD (para residentes y transeúntes mayores de 12 años)
+</span>
+</div>
+
+<table style="width:100%; border: hidden; margin-top: 5%">
+    <tr>
+        <td style=" border: hidden ;" colspan='8'>
+
+            <table style="width:100%">
+                <tr>
+                    <td class="font-weight-bold" rowspan='2'>Enfermedades</td>
+                    <td class="font-weight-bold" rowspan='2'>SI</td>
+                    <td class="font-weight-bold" rowspan='2'>NO</td>
+                    <td class="font-weight-bold" colspan='1'>TIEMPO DE EVOLUCIÓN</td>
+                    <td class="font-weight-bold" colspan='2'>TRATAMIENTO</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" colspan='1'>(meses/años)</td>
+                    <td class="font-weight-bold" colspan='1'>SI</td>
+                    <td class="font-weight-bold" colspan='1'>NO</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>HIPERTENSIÓN ARTERIAL</b></td>
+                    <% if(hipertencionArterial === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(hipertencionArterial === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionHipertencion; %></td>
+                    <% if(tratamientoHipertencion === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoHipertencion === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>DIABETES MELLITUS</b></td>
+                    <% if(diabetes === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(diabetes === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionDiabetes; %></td>
+                    <% if(tratamientoDiabetes === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoDiabetes === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>ENFERMEDAD CARDIACA</b></td>
+                    <% if(cardiaca === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(cardiaca === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionCardiaca; %></td>
+                    <% if(tratamientoCardiaca === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td></td>
+                    <% } %>
+                    <% if(tratamientoCardiaca === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>ENFERMEDAD RENAL</b></td>
+                    <% if(renal === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(renal === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionRenal; %></td>
+                    <% if(tratamientoRenal === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoRenal === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>OTRA ENFERMEDAD CRONICA</b></td>
+                    <% if(cronica === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(cronica === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionCronica; %></td>
+                    <% if(tratamientoCronica === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoCronica === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>ALGUNA DISCAPACIDAD</b></td>
+                    <% if(discapacidad === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(discapacidad === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionDiscapacidad; %></td>
+                    <% if(tratamientoDiscapacidad === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoDiscapacidad === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>ALGUNA ALERGIA</b></td>
+                    <% if(alergia === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(alergia === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionAlergia; %></td>
+                    <% if(tratamientoAlergia === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoAlergia === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold" ><b>OTRA AFECCION QUE REQUIERE CUIDADO</b></td>
+                    <% if(afeccion === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(afeccion === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <td class="font-weight-bold"><%= tiempoEvolucionAfeccion; %></td>
+                    <% if(tratamientoAfeccion === 'Si'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                    <% if(tratamientoAfeccion === 'no'){ %>
+                        <td >X</td>
+                    <% } else{ %>
+                        <td ></td>
+                    <% } %>
+                </tr>
+                <!-- <tr>
+                     <td class="font-weight-bold" colspan='3'>Aceite SAE 80 w 90</td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+                 <tr>
+                     <td class="font-weight-bold" colspan='3'>Aceite SAE Hidraúlico</td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+                 <tr>
+                     <td class="font-weight-bold" colspan='3'>Aceite SAE 85/140</td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+                 <tr>
+                     <td class="font-weight-bold" colspan='3'>ISO 68</td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+                 <tr>
+                     <td class="font-weight-bold" colspan='3'>ISO 46</td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+                 <tr>
+                     <td class="font-weight-bold" colspan='3'>ATF</td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+                 <tr>
+                     <td class="font-weight-bold" colspan='3'></td>
+                     <td class="font-weight-bold" colspan='3'></td>
+                 </tr>
+         -->
+            </table>
+
+        </td>
+        <td style="border: hidden; ">
+
+            <table style="width:30%; border: hidden; margin-top: 5%">
+                <tr>
+                    <td style=" border: hidden;" rowspan='2' >A MUJERES:</td>
+                    <td style="border: hidden;">EMBARAZO</td>
+
+                </tr>
+
+                <tr>
+                    <% if(embarazoD === 'Si'){ %>
+                        <td style="border: hidden;">X</td>
+                    <% } else{ %>
+                        <td style="border: hidden;"></td>
+                    <% } %>
+                        <% if(embarazoD === 'No'){ %>
+                            <td style="border: hidden;">X</td>
+                        <% } else{ %>
+                            <td style="border: hidden;"></td>
+                        <% } %>
+
+                </tr>
+
+                <tr>
+                    <td style=" border: hidden;"  >N° SEMANAS DE GESTACIÓN:</td>
+
+                </tr>
+
+                <tr>
+                    <td style=" border: hidden;"  >semanas: <%= semanasEmbarazoD; %> </td>
+
+                </tr>
+
+            </table>
+
+        </td>
+
+    </tr>
+
+    <tr style="border: hidden;">
+        <td style="border: hidden;">SEGURO DE SALUD</td>
+        <td style="border: hidden;">IESS</td>
+        <% if(seguroSaludD === 'iess'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;">ISSPOL</td>
+        <% if(seguroSaludD === 'isspol'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td>PRIVADO (nacional)</td>
+        <% if(seguroSaludD === 'privado(nacional)'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <% if(seguroSaludD === 'privado(nacional)'){ %>
+            <td style="border: hidden;"><%= privadoNacionalD; %></td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+    </tr>
+    <tr style="border: hidden;">
+        <td style="border: hidden;"></td>
+        <td style="border: hidden;">ISSFA</td>
+        <% if(seguroSaludD === 'issfa'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <td style="border: hidden;"></td>
+        <td style="border: hidden;"></td>
+        <td>PRIVADO (internacional)</td>
+        <% if(seguroSaludD === 'privado(internacional)'){ %>
+            <td style="border: hidden;">X</td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+        <% if(seguroSaludD === 'privado(internacional)'){ %>
+            <td style="border: hidden;"><%= privadoNacionalD; %></td>
+        <% } else{ %>
+            <td style="border: hidden;"></td>
+        <% } %>
+    </tr>
+
+</table>
+
+<div>Ante cualquier manifestación o síntoma de malestar, favor COMUNICARSE de inmediato con el Sistema ECU 911</div>
+<div>de Galápagos para coordinar la atención médico-sanitaria que sea requerida.</div>
+
+<div><b>DECLARACIÓN DE ACEPTACIÓN</b></div>
+<div>Los datos de este formulario serán de uso exclusivo para la estrategia de prevención y vigilancia epidemiológica de la trasmisión del SARSCoV-2 y que está orientada en particular a la protección de los grupos vulnerables del COVID-19. Declaro con mi firma, la aceptación del
+    mismo.
+</div>
+<div>FIRMA</div>
+
+<!-- <div style="position:absolute;left:80.40px;top:480.73px" class="cls_002"><span class="cls_002">2. DATOS DE ESTADO DE SALUD (para residentes y transeúntes mayores de 12 años)</span></div>
+ <div style="position:absolute;left:80.40px;top:353.57px" class="cls_004"><span class="cls_004">Seleccione si cuenta con alguna (s) de las siguientes afecciones</span></div>
+ <div style="position:absolute;left:273.17px;top:364.85px" class="cls_005"><span class="cls_005">TIEMPO DE</span></div>
+ <div style="position:absolute;left:327.43px;top:370.01px" class="cls_005"><span class="cls_005">TRATAMIENTO</span></div>
+ <div style="position:absolute;left:123.26px;top:374.69px" class="cls_004"><span class="cls_004">ENFERMEDADES</span></div>
+ <div style="position:absolute;left:227.81px;top:374.69px" class="cls_004"><span class="cls_004">SI</span></div>
+ <div style="position:absolute;left:245.69px;top:374.69px" class="cls_004"><span class="cls_004">NO</span></div>
+ <div style="position:absolute;left:272.09px;top:374.21px" class="cls_005"><span class="cls_005">EVOLUCION</span></div>
+ <div style="position:absolute;left:394.99px;top:373.49px" class="cls_004"><span class="cls_004">A MUJERES:</span></div>
+ <div style="position:absolute;left:453.10px;top:373.49px" class="cls_008"><span class="cls_008">EMB</span><span class="cls_004">ARAZO:</span></div>
+ <div style="position:absolute;left:266.45px;top:383.33px" class="cls_004"><span class="cls_004">(meses / años)</span></div>
+ <div style="position:absolute;left:331.87px;top:383.93px" class="cls_004"><span class="cls_004">SI</span></div>
+ <div style="position:absolute;left:359.59px;top:383.93px" class="cls_004"><span class="cls_004">NO</span></div>
+ <div style="position:absolute;left:438.58px;top:383.93px" class="cls_004"><span class="cls_004">SI</span></div>
+ <div style="position:absolute;left:482.14px;top:383.93px" class="cls_004"><span class="cls_004">NO</span></div>
+ <div style="position:absolute;left:80.28px;top:395.09px" class="cls_006"><span class="cls_006">HIPERTENSIÓN   RTERI  L</span></div>
+ <div style="position:absolute;left:80.28px;top:405.55px" class="cls_006"><span class="cls_006">DIABETES MELLITUS</span></div>
+ <div style="position:absolute;left:80.28px;top:415.99px" class="cls_006"><span class="cls_006">ENFERMEDAD CARDIACA</span></div>
+ <div style="position:absolute;left:394.99px;top:415.27px" class="cls_004"><span class="cls_004">No. SEMANAS DE GESTACIÓN:</span></div>
+ <div style="position:absolute;left:80.28px;top:426.43px" class="cls_006"><span class="cls_006">ENFERMEDAD RENAL</span></div>
+ <div style="position:absolute;left:80.28px;top:436.87px" class="cls_006"><span class="cls_006">OTRA ENFERMEDAD CRONICA</span></div>
+ <div style="position:absolute;left:409.51px;top:436.15px" class="cls_004"><span class="cls_004">semanas:</span></div>
+ <div style="position:absolute;left:80.28px;top:447.31px" class="cls_006"><span class="cls_006">ALGUNA DISCAPACIDAD</span></div>
+ <div style="position:absolute;left:80.28px;top:457.75px" class="cls_006"><span class="cls_006">ALGUNA ALERGIA</span></div>
+ <div style="position:absolute;left:80.28px;top:468.19px" class="cls_006"><span class="cls_006">OTRA AFECCION QUE REQUIERE CUIDADO</span></div>
+ <div style="position:absolute;left:80.40px;top:484.15px" class="cls_004"><span class="cls_004">SEGURO DE SALUD:</span></div>
+ <div style="position:absolute;left:173.30px;top:484.15px" class="cls_004"><span class="cls_004">IESS</span></div>
+ <div style="position:absolute;left:241.85px;top:484.15px" class="cls_004"><span class="cls_004">ISSPOL</span></div>
+ <div style="position:absolute;left:335.83px;top:484.15px" class="cls_004"><span class="cls_004">PRIVADO(nacional):</span></div>
+ <div style="position:absolute;left:173.30px;top:503.47px" class="cls_004"><span class="cls_004">ISSFA</span></div>
+ <div style="position:absolute;left:335.83px;top:503.47px" class="cls_004"><span class="cls_004">PRIVADO(internacional):</span></div>
+ <div style="position:absolute;left:121.10px;top:534.79px" class="cls_004"><span class="cls_004">Ante cualquier manifestación o síntoma de malestar, favor COMUNICARSE de inmediato con el Sistema ECU 911</span></div>
+ <div style="position:absolute;left:177.50px;top:545.26px" class="cls_004"><span class="cls_004">de Galápagos para coordinar la atención médico-sanitaria que sea requerida.</span></div>
+ <div style="position:absolute;left:250.61px;top:565.54px" class="cls_002"><span class="cls_002">DECLARACIÓN DE ACEPTACIÓN</span></div>
+ <div style="position:absolute;left:80.40px;top:576.10px" class="cls_007"><span class="cls_007">Los datos de este formulario serán de uso exclusivo para la estrategia de prevención y vigilancia epidemiológica de la trasmisión del SARS-</span></div>
+ <div style="position:absolute;left:83.16px;top:586.54px" class="cls_007"><span class="cls_007">CoV-2 y que está orientada en particular a la protección de los grupos vulnerables del COVID-19. Declaro con mi firma, la aceptación del</span></div>
+ <div style="position:absolute;left:289.13px;top:596.98px" class="cls_007"><span class="cls_007">mismo.</span></div>
+ <div style="position:absolute;left:282.05px;top:618.34px" class="cls_004"><span class="cls_004">FIRMA</span></div>-->
+
+</body>
+</html>
+
