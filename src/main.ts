@@ -16,14 +16,11 @@ import { join } from 'path';
 
 import { NestExpressApplication } from '@nestjs/platform-express';
 
-const httpsOptions = {
-  key: fs.readFileSync('C:\\Users\\Usuario\\Documents\\crm-ion\\ca.key'),
-  cert: fs.readFileSync('C:\\Users\\Usuario\\Documents\\crm-ion\\ca.crt'),
-};
+
 
 async function bootstrap() {
 
-  const app = await NestFactory.create(AppModule, {httpsOptions});
+  const app = await NestFactory.create(AppModule);
   app.enableCors({
     origin: true
   });
