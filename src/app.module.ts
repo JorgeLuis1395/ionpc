@@ -318,11 +318,7 @@ const ENTIDADES = [
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'public'),
         }),
-        MongooseModule.forRootAsync({
-            useFactory: () => ({
-                uri: process.env.URI_MONGODB || 'mongodb+srv://bulbasorcarrillo:gdWBZeHdWirwtUEN@cluster0.auwxkms.mongodb.net/?retryWrites=true&w=majority',
-            }),
-        }),
+
 
         ScheduleModule.forRoot()
 
