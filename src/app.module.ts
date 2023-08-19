@@ -310,9 +310,6 @@ const ENTIDADES = [
             }),
         }),
 
-        UsersModule,
-        RoomsModule,
-        AuthModule,
 
         TypeOrmModule.forFeature(ENTIDADES),
         ServeStaticModule.forRoot({
